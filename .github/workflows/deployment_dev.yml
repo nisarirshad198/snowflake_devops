@@ -1,0 +1,47 @@
+name: Deploy data pipeline
+
+# Action will run on pushes to selected branches
+on:
+  push:
+    branches:
+      - dev      
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+
+    env:
+      REPO_NAME: "demo_common.public.demo_repo"
+      
+      #SNOWFLAKE_CONNECTIONS_DEFAULT_AUTHENTICATOR: "SNOWFLAKE_JWT"
+      #SNOWFLAKE_CONNECTIONS_DEFAULT_PRIVATE_KEY_FILE: ".snowflake/snowflake_rsa_key"
+      # Read connection secrets
+      SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
+      SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER_DEV }}
+      SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}
+
+    steps:
+      # Checkout step is necessary if you want to use a config file from your repo
+      - name: Checkout repository
+        uses: actions/checkout@v4      
+
+      # Install Snowflake CLI GitHub Action and point to config file
+      - name: Install snowflake-cli
+        uses: Snowflake-Labs/snowflake-cli-action@v1.5
+        with:
+          cli-version: "latest"
+          default-config-file-path: ".snowflake/config.toml"
+      
+      - name: Set Branch Name
+        run: ${{ github.ref_name }}
+
+      # Update Snowflake's copy of the repository
+      - name: Fetch repository changes
+        run: snow git fetch "${REPO_NAME}"
+
+      # Deploy pipeline with branch specific parameters
+      - name: Deploy data pipeline to ${{ github.ref_name }}
+        run: snow git execute "@${REPO_NAME}/branches/${BRANCH_NAME}/snowflake/*"
