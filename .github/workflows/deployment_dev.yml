@@ -33,7 +33,14 @@ jobs:
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-          default-config-file-path: "snowflake/config.toml"
+        env:
+          SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
+          SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER_DEV }}
+          SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}
+          SNOWFLAKE_CONNECTIONS_DEFAULT_ROLE: "ACCOUNTADMIN"
+          SNOWFLAKE_CONNECTIONS_DEFAULT_WAREHOUSE: "COMPUTE_WH"
+          SNOWFLAKE_CONNECTIONS_DEFAULT_DATABASE: "DEMO_COMMON"
+          SNOWFLAKE_CONNECTIONS_DEFAULT_SCHEMA: "PUBLIC"
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
