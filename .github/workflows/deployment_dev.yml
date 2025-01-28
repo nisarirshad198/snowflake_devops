@@ -33,7 +33,7 @@ jobs:
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-          default-config-file-path: ".snowflake/config.toml"
+          default-config-file-path: "snowflake/config.toml"
 
       
       - name: Set Branch Name
@@ -45,7 +45,7 @@ jobs:
 
       # Deploy pipeline with branch specific parameters
       - name: Deploy data pipeline to ${{ github.ref_name }}
-        run: snow git execute "@${REPO_NAME}/branches/${BRANCH_NAME}/.snowflake/setup_snowflake.sql"
+        run: snow git execute "@${REPO_NAME}/branches/${BRANCH_NAME}/snowflake/setup_snowflake.sql"
 
         
         
