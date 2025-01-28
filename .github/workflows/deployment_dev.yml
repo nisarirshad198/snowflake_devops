@@ -37,16 +37,15 @@ jobs:
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-        run: |
-          mkdir -p .snowflake
-          echo '[connections.default]' > .snowflake/config.toml
-          echo "account = \"${{ secrets.SNOWFLAKE_ACCOUNT }}\"" >> .snowflake/config.toml
-          echo "user = \"${{ secrets.SNOWFLAKE_USER }}\"" >> .snowflake/config.toml
-          echo "password = \"${{ secrets.SNOWFLAKE_PASSWORD }}\"" >> .snowflake/config.toml
-          echo "role = \"${{ secrets.SNOWFLAKE_ROLE }}\"" >> .snowflake/config.toml
-          echo "warehouse = \"${{ secrets.SNOWFLAKE_WAREHOUSE }}\"" >> .snowflake/config.toml
-          echo "database = \"${{ secrets.SNOWFLAKE_DATABASE }}\"" >> .snowflake/config.toml
-          echo "schema = \"${{ secrets.SNOWFLAKE_SCHEMA }}\"" >> .snowflake/config.toml
+        run: |          
+          echo '[connections.default]' > snowflake/config.toml
+          echo "account = \"${{ secrets.SNOWFLAKE_ACCOUNT }}\"" >> snowflake/config.toml
+          echo "user = \"${{ secrets.SNOWFLAKE_USER }}\"" >> snowflake/config.toml
+          echo "password = \"${{ secrets.SNOWFLAKE_PASSWORD }}\"" >> snowflake/config.toml
+          echo "role = \"${{ secrets.SNOWFLAKE_ROLE }}\"" >> snowflake/config.toml
+          echo "warehouse = \"${{ secrets.SNOWFLAKE_WAREHOUSE }}\"" >> snowflake/config.toml
+          echo "database = \"${{ secrets.SNOWFLAKE_DATABASE }}\"" >> snowflake/config.toml
+          echo "schema = \"${{ secrets.SNOWFLAKE_SCHEMA }}\"" >> snowflake/config.toml
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
