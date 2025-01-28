@@ -34,9 +34,10 @@ jobs:
         with:
           cli-version: "latest"
           default-config-file-path: ".snowflake/config.toml"
+
       
       - name: Set Branch Name
-        run: ${{ github.ref_name }}
+        run: BRANCH_NAME=${{ github.ref_name }}
 
       # Update Snowflake's copy of the repository
       - name: Fetch repository changes
