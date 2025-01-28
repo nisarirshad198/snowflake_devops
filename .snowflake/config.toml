@@ -1,7 +1,7 @@
 [connections.default]
 warehouse = "COMPUTE_WH"
 role = "ACCOUNTADMIN"
-database = "demo_common"
+database = "DEMO_COMMON"
 schema = "PUBLIC"
 account = "GWNKTAH-TF62777"
 user = "nisar"

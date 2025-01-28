@@ -44,4 +44,4 @@ CREATE OR ALTER STAGE bronze.raw;
 
 
 -- Copy file from GitHub to internal stage
-copy files into @bronze.raw from @quickstart_common.public.quickstart_repo/branches/main/data/airport_list.json;
+#copy files into @bronze.raw from @quickstart_common.public.quickstart_repo/branches/main/data/airport_list.json;
