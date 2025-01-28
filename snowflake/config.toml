@@ -1,8 +1,0 @@
-[connections.default]
-warehouse = {{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}
-role = "ACCOUNTADMIN"
-database = "DEMO_COMMON"
-schema = "PUBLIC"
-account = {{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
-user = {{ secrets.SNOWFLAKE_USER_DEV }}
-password = {{ secrets.SNOWFLAKE_PASSWORD_DEV }}
