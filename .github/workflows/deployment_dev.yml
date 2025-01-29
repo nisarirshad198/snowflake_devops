@@ -21,11 +21,7 @@ jobs:
       # Read connection secrets
       SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER_DEV }}
-      SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}
-      SNOWFLAKE_CONNECTIONS_DEFAULT_ROLE: "ACCOUNTADMIN"
-      SNOWFLAKE_CONNECTIONS_DEFAULT_WAREHOUSE: "COMPUTE_WH"
-      SNOWFLAKE_CONNECTIONS_DEFAULT_DATABASE: "DEMO_COMMON"
-      SNOWFLAKE_CONNECTIONS_DEFAULT_SCHEMA: "PUBLIC"
+      SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}     
 
     steps:
       # Checkout step is necessary if you want to use a config file from your repo
@@ -37,15 +33,19 @@ jobs:
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-        run: |          
-          echo '[connections.default]' > snowflake/config.toml
-          echo "account = \"${{ secrets.SNOWFLAKE_ACCOUNT }}\"" >> snowflake/config.toml
-          echo "user = \"${{ secrets.SNOWFLAKE_USER }}\"" >> snowflake/config.toml
-          echo "password = \"${{ secrets.SNOWFLAKE_PASSWORD }}\"" >> snowflake/config.toml
-          echo "role = \"${{ secrets.SNOWFLAKE_ROLE }}\"" >> snowflake/config.toml
-          echo "warehouse = \"${{ secrets.SNOWFLAKE_WAREHOUSE }}\"" >> snowflake/config.toml
-          echo "database = \"${{ secrets.SNOWFLAKE_DATABASE }}\"" >> snowflake/config.toml
-          echo "schema = \"${{ secrets.SNOWFLAKE_SCHEMA }}\"" >> snowflake/config.toml
+      - name: Configure Snowflake CLI
+        run: |
+          mkdir -p ~/.snowflake
+          cat <<EOF > ~/.snowflake/config.toml
+          [connections.default]
+          account = "${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}"
+          user = "${{ secrets.SNOWFLAKE_USER_DEV }}"
+          password = "${{ secrets.SNOWFLAKE_PASSWORD_DEV }}"
+          role = "$ACCOUNTADMIN"
+          warehouse = "${{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}"
+          database = "COMMON_DEMO"
+          schema = "PUBLIC"
+          EOF
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
