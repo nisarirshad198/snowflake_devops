@@ -22,6 +22,7 @@ jobs:
       SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER_DEV }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}
+      SNOWFLAKE_CONNECTIONS_DEFAULT_DATABASE: "DEMO_COMMON"
         
 
     steps:
@@ -37,7 +38,7 @@ jobs:
           [connections.default]
           warehouse = "COMPUTE_WH"
           role = "ACCOUNTADMIN"
-          database = "QUICKSTART_COMMON"
+          database = "DEMO_COMMON"
           schema = "PUBLIC"
           account = "GWNKTAH-TF62777"
           user = "nisar"
