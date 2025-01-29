@@ -22,29 +22,14 @@ jobs:
       SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_USER: ${{ secrets.SNOWFLAKE_USER_DEV }}
       SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD_DEV }}
-      SNOWFLAKE_CONNECTIONS_DEFAULT_DATABASE: "DEMO_COMMON"
-      SNOWFLAKE_CONNECTIONS_DEFAULT_SCHEMA: "PUBLIC"
+      
         
 
     steps:
       # Checkout step is necessary if you want to use a config file from your repo
       - name: Checkout repository
-        uses: actions/checkout@v4      
-
-
-      - name: Configure Snowflake CLI
-        run: |
-          mkdir -p ~/snowflake
-          cat <<EOF > ~/snowflake/config.toml
-          [connections.default]
-          warehouse = "COMPUTE_WH"
-          role = "ACCOUNTADMIN"
-          database = "DEMO_COMMON"
-          schema = "PUBLIC"
-          account = "GWNKTAH-TF62777"
-          user = "nisar"
-          password = "B0lt0n198#?"          
-          EOF 
+        uses: actions/checkout@v4
+              
       # Install Snowflake CLI GitHub Action and point to config file
       - name: Install snowflake-cli
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
