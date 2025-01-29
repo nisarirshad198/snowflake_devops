@@ -21,7 +21,7 @@ CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
   TYPE=EMAIL
   ENABLED=TRUE;
 
-execute immediate from './setup_snowflake_demo_db.sql'
+execute immediate from './setup_snowflake_demo_db.sql';
 
 
 
