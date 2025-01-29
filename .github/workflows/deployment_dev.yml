@@ -35,8 +35,8 @@ jobs:
           cli-version: "latest"
       - name: Configure Snowflake CLI
         run: |
-          mkdir -p ~/.snowflake
-          cat <<EOF > ~/.snowflake/config.toml
+          mkdir -p ~/snowflake
+          cat <<EOF > ~/snowflake/config.toml
           [connections.default]
           account = "${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}"
           user = "${{ secrets.SNOWFLAKE_USER_DEV }}"
