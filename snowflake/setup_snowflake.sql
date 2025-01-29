@@ -1,11 +1,5 @@
 USE ROLE ACCOUNTADMIN;
 
-CREATE OR ALTER WAREHOUSE demo_WH 
-  WAREHOUSE_SIZE = XSMALL 
-  AUTO_SUSPEND = 300 
-  AUTO_RESUME= TRUE;
-
-
 -- Separate database for git repository
 CREATE OR ALTER DATABASE demo_common;
 
@@ -22,26 +16,13 @@ CREATE OR REPLACE GIT REPOSITORY demo_common.public.demo_repo
   API_INTEGRATION = git_api_integration
   ORIGIN = 'https://github.com/nisarirshad198/snowflake_devops'; -- INSERT URL OF FORKED REPO HERE
 
-
-CREATE OR ALTER DATABASE demo_db;
-
-
 -- To monitor data pipeline's completion
 CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
   TYPE=EMAIL
   ENABLED=TRUE;
 
-
--- Database level objects
-CREATE OR ALTER SCHEMA bronze;
-CREATE OR ALTER SCHEMA silver;
-CREATE OR ALTER SCHEMA gold;
+execute immediate from './setup_snowflake_demo_db.sql'
 
 
--- Schema level objects
-CREATE OR REPLACE FILE FORMAT bronze.json_format TYPE = 'json';
-CREATE OR ALTER STAGE bronze.raw;
 
 
--- Copy file from GitHub to internal stage
---copy files into @bronze.raw from @quickstart_common.public.quickstart_repo/branches/main/data/airport_list.json;
