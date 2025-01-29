@@ -41,11 +41,11 @@ jobs:
           account = "${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}"
           user = "${{ secrets.SNOWFLAKE_USER_DEV }}"
           password = "${{ secrets.SNOWFLAKE_PASSWORD_DEV }}"
-          role = "$ACCOUNTADMIN"
+          role = "ACCOUNTADMIN"
           warehouse = "${{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}"
-          database = "COMMON_DEMO"
+          database = "DEMO_COMMON"
           schema = "PUBLIC"
-          EOF
+          EOF         
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
