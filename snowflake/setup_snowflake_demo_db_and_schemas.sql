@@ -1,9 +1,6 @@
 USE ROLE ACCOUNTADMIN;
 
-CREATE OR ALTER WAREHOUSE demo_db 
-  WAREHOUSE_SIZE = XSMALL 
-  AUTO_SUSPEND = 300 
-  AUTO_RESUME= TRUE;
+
 CREATE OR ALTER DATABASE demo_db;
 -- Database level objects
 CREATE OR ALTER SCHEMA bronze;
@@ -14,5 +11,7 @@ CREATE OR ALTER SCHEMA gold;
 -- Schema level objects
 CREATE OR REPLACE FILE FORMAT bronze.json_format TYPE = 'json';
 CREATE OR ALTER STAGE bronze.raw;
+
+execute immediate from './createroledemodb.sql';
 
 

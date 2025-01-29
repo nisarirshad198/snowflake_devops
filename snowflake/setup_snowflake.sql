@@ -1,8 +1,5 @@
 USE ROLE ACCOUNTADMIN;
 
--- Separate database for git repository
-CREATE OR ALTER DATABASE demo_common;
-
 
 -- API integration is needed for GitHub integration
 CREATE OR REPLACE API INTEGRATION git_api_integration
@@ -21,7 +18,23 @@ CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
   TYPE=EMAIL
   ENABLED=TRUE;
 
-execute immediate from './setup_snowflake_demo_db.sql';
+  CREATE OR ALTER WAREHOUSE WH_END_USERS 
+  WAREHOUSE_SIZE = XSMALL 
+  AUTO_SUSPEND = 300 
+  AUTO_RESUME= TRUE;
+
+  CREATE OR ALTER WAREHOUSE WH_DEV 
+  WAREHOUSE_SIZE = XSMALL 
+  AUTO_SUSPEND = 300 
+  AUTO_RESUME= TRUE;
+
+  
+  CREATE OR ALTER WAREHOUSE WH_BU 
+  WAREHOUSE_SIZE = XSMALL 
+  AUTO_SUSPEND = 300 
+  AUTO_RESUME= TRUE;
+
+execute immediate from './setup_snowflake_demo_db_and_schemas.sql';
 
 
 
