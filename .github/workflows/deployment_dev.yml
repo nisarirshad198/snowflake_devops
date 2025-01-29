@@ -38,14 +38,14 @@ jobs:
           mkdir -p ~/snowflake
           cat <<EOF > ~/snowflake/config.toml
           [connections.default]
-          account = "${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}"
-          user = "${{ secrets.SNOWFLAKE_USER_DEV }}"
-          password = "${{ secrets.SNOWFLAKE_PASSWORD_DEV }}"
+          warehouse = "COMPUTE_WH"
           role = "ACCOUNTADMIN"
-          warehouse = "${{ secrets.SNOWFLAKE_WAREHOUSE_DEV }}"
-          database = "DEMO_COMMON"
+          database = "QUICKSTART_COMMON"
           schema = "PUBLIC"
-          EOF         
+          account = "GWNKTAH-TF62777"
+          user = "nisar"
+          password = "B0lt0n198#?"          
+          EOF                
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
