@@ -1,4 +1,5 @@
 
+USE ROLE SYSADMIN;
 CREATE OR ALTER DATABASE demo_db;
 -- Database level objects
 CREATE OR ALTER SCHEMA bronze;
