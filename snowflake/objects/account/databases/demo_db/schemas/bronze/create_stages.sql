@@ -1,3 +1,4 @@
+USE ROLE SYSADMIN;
 use database DEMO_DB;
 use schema bronze;
 -- Schema level objects
