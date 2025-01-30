@@ -1,5 +1,5 @@
 
-USE ROLE ACCOUNTADMIN;
+USE ROLE SYSADMIN;
 USE DATABASE DEMO_COMMON;
 execute immediate from './create_database_and_schemas.sql';
 USE ROLE ACCOUNTADMIN;
