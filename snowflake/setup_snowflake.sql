@@ -35,6 +35,7 @@ GRANT READ , WRITE  ON GIT REPOSITORY demo_common.public.demo_repo TO ROLE SYSAD
   AUTO_SUSPEND = 300 
   AUTO_RESUME= TRUE;
 USE ROLE SYSADMIN;
+USE WAREHOUSE COMPUTE_WH;
 execute immediate from './objects/account/databases/demo_db/main.sql';
 
 
