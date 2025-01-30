@@ -1,3 +1,5 @@
+USE ROLE ACCOUNTADMIN;
+USE WAREHOUSE COMPUTE_WH;
 use database DEMO_DB;
 use schema bronze;
 create or alter table vacation_spots (
