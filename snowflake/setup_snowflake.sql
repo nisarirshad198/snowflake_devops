@@ -1,4 +1,5 @@
 USE ROLE ACCOUNTADMIN;
+USE WAREHOUSE COMPUTE_WH;
 
 
 -- API integration is needed for GitHub integration
