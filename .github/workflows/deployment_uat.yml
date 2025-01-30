@@ -47,7 +47,7 @@ jobs:
 
       # Deploy pipeline with branch specific parameters
       - name: Deploy data pipeline to ${{ github.ref_name }}
-        run: snow git execute "@${REPO_NAME}/branches/${{ github.ref_name }}/snowflake/setup_snowflake.sql"
+        run: snow git execute "@${REPO_NAME}/branches/uat/snowflake/setup_snowflake.sql"
 
         
         
