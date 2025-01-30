@@ -1,3 +1,6 @@
+
+USE ROLE SYSADMIN;
+USE WAREHOUSE COMPUTE_WH;
 execute immediate from './create_database_and_schemas.sql';
 execute immediate from './create_role.sql';
 
