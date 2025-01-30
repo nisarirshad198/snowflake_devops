@@ -34,9 +34,7 @@ GRANT READ , WRITE  ON GIT REPOSITORY demo_common.public.demo_repo TO ROLE SYSAD
   WAREHOUSE_SIZE = XSMALL 
   AUTO_SUSPEND = 300 
   AUTO_RESUME= TRUE;
-USE WAREHOUSE COMPUTE_WH;
-USE ROLE ACCOUNTADMIN;
-USE DATABASE DEMO_COMMON;
+
 execute immediate from './objects/account/databases/demo_db/main.sql';
 
 
