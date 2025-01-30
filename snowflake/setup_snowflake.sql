@@ -34,7 +34,7 @@ CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
   AUTO_SUSPEND = 300 
   AUTO_RESUME= TRUE;
 
-execute immediate from './setup_snowflake_demo_db_and_schemas.sql';
+execute immediate from 'snowflake/objects/account/databases/demo_db/main.sql';
 
 
 
