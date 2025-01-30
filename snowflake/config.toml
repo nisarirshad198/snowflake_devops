@@ -1,6 +1,6 @@
 [connections.default]
 warehouse = "COMPUTE_WH"
-role = "ACCOUNTADMIN"
+role = "SYSADMIN"
 database = "DEMO_COMMON"
 schema = "PUBLIC"
 account = "gwnktah-dev_account"
