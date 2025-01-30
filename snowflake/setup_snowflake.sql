@@ -37,7 +37,6 @@ GRANT USAGE ON FUTURE STAGES IN DATABASE demo_common TO ROLE SYSADMIN;
   AUTO_RESUME= TRUE;
 
 USE ROLE SYSADMIN;
-
 execute immediate from './objects/account/databases/demo_db/main.sql';
 
 
