@@ -1,0 +1,8 @@
+[connections.default]
+warehouse = "COMPUTE_WH"
+role = "SYSADMIN"
+database = "DEMO_COMMON"
+schema = "PUBLIC"
+account = "gwnktah-uat_account"
+user = "nisar"
+password = "Blackburn786#?"
