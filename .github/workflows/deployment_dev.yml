@@ -32,9 +32,7 @@ jobs:
               
       # Install Snowflake CLI GitHub Action and point to config file
 
-      - name: Configure Snowcli
-        env: |
-          SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT_DEV }}
+      - name: Configure Snowcli        
         run: |
           cd $GITHUB_WORKSPACE
           echo "[connection]" > config.toml
