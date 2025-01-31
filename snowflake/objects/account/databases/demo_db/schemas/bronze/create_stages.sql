@@ -1,4 +1,6 @@
 USE ROLE SYSADMIN;
+USE WAREHOUSE COMPUTE_WH;
+
 use database DEMO_DB;
 use schema bronze;
 -- Schema level objects
