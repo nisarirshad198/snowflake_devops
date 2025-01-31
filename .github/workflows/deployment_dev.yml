@@ -32,17 +32,18 @@ jobs:
               
       # Install Snowflake CLI GitHub Action and point to config file
 
-      - name: Configure Snowcli        
+      - name: Configure Snowcli    
+        
         run: |
           cd $GITHUB_WORKSPACE
-          echo "[connection]" > config.toml
-          echo "[connection.dev]" >> config.toml
+          echo "[connections.default]" > config.toml
+          echo "warehouse = \"COMPUTE_WH\"" >> config.toml
+          echo "role = \"SYSADMIN\"" >> config.toml
+          echo "database = \"DEMO_COMMON\"" >> config.toml
+          echo "schema = \"PUBLIC\"" >> config.toml
           echo "account = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT\"" >> config.toml
           echo "user = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_USER\"" >> config.toml
           echo "password = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD\"" >> config.toml
-          echo "warehouse = \"COMPUTE_WH\"" >> config.toml
-          echo "database = \"DEMO_COMMON\"" >> config.toml
-          echo "schema = \"PUBLIC\"" >> config.toml
 
       - name: Install snowflake-cli
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
