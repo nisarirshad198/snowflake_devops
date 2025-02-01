@@ -10,5 +10,12 @@ CREATE OR ALTER SCHEMA gold;
 
 
 
+CREATE OR ALTER DATABASE demo_db3;
+-- Database level objects
+CREATE OR ALTER SCHEMA bronze;
+CREATE OR ALTER SCHEMA silver;
+CREATE OR ALTER SCHEMA gold;
+
+
 
 
