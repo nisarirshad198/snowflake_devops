@@ -46,6 +46,7 @@ GRANT USAGE ON FUTURE STAGES IN DATABASE demo_common TO ROLE SYSADMIN;
 
 USE ROLE SYSADMIN;
 execute immediate from './objects/account/databases/demo_db/main.sql';
+execute immediate from './objects/account/databases/demo_db2/main.sql';
 
 
 
