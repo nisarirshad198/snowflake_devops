@@ -31,23 +31,37 @@ jobs:
         uses: actions/checkout@v4
               
       # Install Snowflake CLI GitHub Action and point to config file
+
+      - name: Configure Snowcli    
+        
+        run: |
+          cd $GITHUB_WORKSPACE
+          echo "[connections.default]" > config.toml
+          echo "warehouse = \"COMPUTE_WH\"" >> config.toml
+          echo "role = \"SYSADMIN\"" >> config.toml
+          echo "database = \"DEMO_COMMON\"" >> config.toml
+          echo "schema = \"PUBLIC\"" >> config.toml
+          echo "account = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_ACCOUNT\"" >> config.toml
+          echo "user = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_USER\"" >> config.toml
+          echo "password = \"$SNOWFLAKE_CONNECTIONS_DEFAULT_PASSWORD\"" >> config.toml
+
       - name: Install snowflake-cli
         uses: Snowflake-Labs/snowflake-cli-action@v1.5
         with:
           cli-version: "latest"
-          default-config-file-path: "snowflake/config_prod.toml"               
+          default-config-file-path: "$GITHUB_WORKSPACE/config.toml"             
 
       - name: Deploy data pipeline to ${{ github.ref_name }}
         run: |
           BRANCH_NAME=${{ github.ref_name }}      
 
       # Update Snowflake's copy of the repository
-      - name: Fetch repository changes
-        run: snow git fetch "${REPO_NAME}"
+      - name: Fetch repository/ changes
+        run: snow --config-file $GITHUB_WORKSPACE/config.toml git fetch "${REPO_NAME}"
 
       # Deploy pipeline with branch specific parameters
       - name: Deploy data pipeline to ${{ github.ref_name }}
-        run: snow git execute "@${REPO_NAME}/branches/${{ github.ref_name }}/snowflake/setup_snowflake.sql"
+        run: snow --config-file $GITHUB_WORKSPACE/config.toml git execute "@${REPO_NAME}/branches/${{ github.ref_name }}/snowflake/setup_snowflake.sql"
 
         
         
